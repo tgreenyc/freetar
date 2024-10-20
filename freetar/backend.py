@@ -1,4 +1,8 @@
 import waitress
+import requests
+import threading
+import time
+
 from flask import Flask, render_template, request
 from flask_minify import Minify
 
@@ -70,11 +74,21 @@ def internal_error(error):
     return render_template('error.html',
                            error=error)
 
+def make_request():
+    try:
+        response = requests.get('https://freetar.onrender.com')
+        print(f"Request made at {time.ctime()}. Status code: {response.status_code}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    
+    # Schedule the next run
+    threading.Timer(900, make_request).start()  # 900 seconds = 15 minutes
 
 def main():
     host = "0.0.0.0"
     port = 22000
     if __name__ == '__main__':
+        make_request()  # Make an initial request and start the scheduling
         app.run(debug=True,
                 host=host,
                 port=port)
