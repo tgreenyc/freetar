@@ -88,11 +88,11 @@ def main():
     host = "0.0.0.0"
     port = 22000
     if __name__ == '__main__':
-        make_request()  # Make an initial request and start the scheduling
         app.run(debug=True,
                 host=host,
                 port=port)
     else:
+        make_request()  # Make an initial request and start the scheduling
         print(f"Running backend on {host}:{port}")
         waitress.serve(app, listen=f"{host}:{port}")
 
