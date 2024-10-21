@@ -172,7 +172,9 @@ def get_chords(s: SongDetail) -> SongDetail:
                 elif fret == 0:
                     fingering_for_variant.append("o")
                 else:
-                    fingering_for_variant = fingering_for_variant
+                    fingering_for_variant.append(finger)
+
+            fingering_for_variant = fingering_for_variant
 
             if chord not in chords:
                 chords[chord] = []
