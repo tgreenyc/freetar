@@ -82,7 +82,7 @@ def make_request():
         print(f"An error occurred: {e}")
     
     # Schedule the next run
-    threading.Timer(900, make_request).start()  # 900 seconds = 15 minutes
+    threading.Timer(600, make_request).start()  # 900 seconds = 10 minutes
 
 def main():
     host = "0.0.0.0"
